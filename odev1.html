@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="odev1.css">
+    <script src="https://kit.fontawesome.com/d0a247cd31.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        #panelic {
+            border: 1px solid rgb(206, 202, 202);
+            margin: 10px;
+            margin-bottom: 0px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            background-color: rgb(231, 228, 228);
+        }
+
+        #panelic>div {
+            margin-left: 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        #panelic>div:hover {
+            color: blue;
+        }
+
+        #more {
+            display: none;
+        }
+
+        #myBtn1 {
+            color: blue;
+        }
+
+        #myBtn1:hover {
+            color: rgb(255, 0, 0);
+        }
+
+        .sidenav {
+            z-index: 1;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a,
+        .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #000000;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .dropdown-container {
+            display: none;
+            padding-left: 8px;
+        }
+
+        .dropdown-btn1 {
+            padding: 0px 0px 0px 16px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #000000;
+            display: block;
+            border: none;
+            background: none;
+
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+       
+        .sidenav a:hover,
+        .dropdown-btn:hover {
+            color: #f1f1f1;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <div id="top">
+        <div id="topright">
+            <div id="topmenu">
+                <i id="icon" class="fa-solid fa-envelope"></i>
+                <p id="iconp">e-mail</p>
+            </div>
+            <div id="topmenu">
+                <i id="icon" class="fa-solid fa-phone" style="margin-left: 5px;"></i>
+                <p id="iconp">0555 555 55 55</p>
+            </div>
+            <div id="topmenu1">
+                <p id="iconp" style="margin-left: 5px;">X-Store</p>
+            </div>
+        </div>
+        <div id="topleft">
+            <div id="topmenuright">
+                <i id="icon" class="fa-brands fa-facebook"></i>
+                <p id="iconp">facebook</p>
+            </div>
+            <div id="topmenuright" style="margin-left: 5px;">
+                <i id="icon" class="fa-brands fa-instagram"></i>
+                <p id="iconp">instagram</p>
+            </div>
+            <div id="topmenuright1" style="margin-left: 5px;">
+                <i id="icon" class="fa-brands fa-youtube"></i>
+                <p id="iconp">youtube</p>
+            </div>
+        </div>
+    </div>
+    <div id="toppic">
+        <div id="topicyazi">
+            <h1>My X-Blog</h1>
+            <p>Farklı bir <b>X-Blog </b>deneyimi için hazır mısınız?</p>
+        </div>
+
+    </div>
+    <div class="topnav">
+        <a class="active" href="#home">Anasayfa</a>
+        <a href="#about">Hakkımızda</a>
+        <a href="#contact">Ürünler</a>
+        <a href="#contact">İletişim</a>
+        <div class="search-container">
+            <div id="search">
+                <input type="text" placeholder="Search.." name="search" style="border-radius: 10px;margin-right: 10px;">
+
+            </div>
+        </div>
+    </div>
+    <div class="second">
+        <div class="secondright">
+            <div class="secondric">
+                <h2 style="text-align: start;">Yazar Hakkında</h2>
+                <h4 style="text-align: start;">Aşağıdaki yakışıklı yazar işte</h4>
+                <img src="data:image/jpeg;base64,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"
+                    alt="" style="border-radius: 110px;width: 100%;">
+                <p>Yazar ne yazar, ne yazmaz bilemezsin. Takip etmek istersen sosyal medyadan takip edebilirsin.</p>
+                <div>
+                    <h1 style="font-size: 1.9em;">Kategoriler</h1>
+                    <div class="sidenav">
+
+                        <button class="dropdown-btn">Dropdown
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-container">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <button class="dropdown-btn">Link 3
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <a href="#">Link 1</a>
+                                <a href="#">Link 2</a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="last">
+
+            <h2 style="margin-left: 10px;">Panel</h2>
+            <h4 style="margin-left: 10px;">Yönetici Paneli</h4>
+            <div id="panelic">
+                <div id="success" style="margin-left: 15px;" href="#">Notlar 1</div>
+                <div id="info" style="margin-left: 15px;" href="#">Notlar 2</div>
+                <div id="warning" style="margin-left: 15px;" href="#">Notlar 3</div>
+                <div id="danger" style="margin-left: 15px;" href="#">Notlar 4</div>
+            </div>
+            <div id="danger1" class="lastic" style="display:none;border: 1px solid rgb(214, 212, 212);border-top: 0px;">
+                <div id="headercontent">
+                    <h2>Tatilden Notlar 4</h2>
+                </div>
+                <p id="p1">Title description, Mar 7, 2022</p>
+                <div id="image">
+                    <p style="margin:20px;">image 4</p>
+                </div>
+                <p id="p1">Tatilde akılda kalan anılardan bir demet...</p>
+                <p id="p1">Tatilimizin üçüncü günü. Artık havuza alışık olduğumuz için akrobatik
+                    hareketler yapmaya başladığımız gündü. Havuza dalıp, birimizin ayaklarının arasından
+                    geçmeye çalışıyoruz. Kendimi, sanırım 3 metre derinlikteki bir havuzda sandığım anda burnumu
+                    havuzun zemininde kırmayı başardığım için tatilimizin son gününü belirlemiş oldum. <br> <br>
+                    Download image
+                </p>
+
+                <a href="maxresdefault.jpg" download>
+                    <img src="maxresdefault.jpg" alt="W3Schools" width="104" height="142">
+                </a>
+            </div>
+            <div id="warning1" class="lastic"
+                style="display:none;border: 1px solid rgb(214, 212, 212);border-top: 0px;">
+                <div id="headercontent">
+                    <h2>Tatilden Notlar 3</h2>
+                </div>
+                <p id="p1">Title description, Mar 7, 2022</p>
+                <div id="image">
+                    <p style="margin:20px;">image 3</p>
+                </div>
+                <p id="p1">Tatilde akılda kalan anılardan bir demet...</p>
+                <p id="p1">Tatilimizin üçüncü günü. Artık havuza alışık olduğumuz için akrobatik
+                    hareketler yapmaya başladığımız gündü. Havuza dalıp, birimizin ayaklarının arasından
+                    geçmeye çalışıyoruz. Kendimi, sanırım 3 metre derinlikteki bir havuzda sandığım anda burnumu
+                    havuzun zemininde kırmayı başardığım için tatilimizin son gününü belirlemiş oldum.
+                </p>
+            </div>
+
+            <div id="info1" class="lastic" style="display:none;border: 1px solid rgb(214, 212, 212);border-top: 0px;">
+                <div id="headercontent">
+                    <h2>Tatilden Notlar 2</h2>
+                </div>
+                <p id="p1">Title description, Mar 7, 2022</p>
+                <div id="image">
+                    <p style="margin:20px;">image 2</p>
+                </div>
+                <p id="p1">Tatilde akılda kalan anılardan bir demet...</p>
+                <p id="p1">Tatilimizin üçüncü günü. Artık havuza alışık olduğumuz için akrobatik
+                    hareketler yapmaya başladığımız gündü. Havuza dalıp, birimizin ayaklarının arasından
+                    geçmeye çalışıyoruz. Kendimi, sanırım 3 metre derinlikteki bir havuzda sandığım anda burnumu
+                    havuzun zemininde kırmayı başardığım için tatilimizin son gününü belirlemiş oldum.
+                </p>
+            </div>
+            <div id="success1" class="lastic"
+                style="display:block;border: 1px solid rgb(214, 212, 212);border-top: 0px;">
+                <div id="headercontent">
+                    <h2>Tatilden Notlar 1</h2>
+                </div>
+                <p id="p1">Title description, Mar 7, 2022</p>
+                <div id="image">
+                    <p style="margin:20px;">image 1</p>
+                </div>
+                <p id="p1">Tatilde akılda kalan anılardan bir demet...</p>
+                <p id="p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum
+                    interdum, nisi lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula
+                        venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus
+                        vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In
+                        at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida
+                        venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor
+                        porta.</span></p>
+
+                <a onclick="myFunction()" id="myBtn1">Read more</a>
+            </div>
+        </div>
+
+    </div>
+    <div id="footer">
+        FOOTER
+    </div>
+    <script>
+      
+        var mybutton = document.getElementById("myBtn");
+
+        
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+    
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        var panel = document.querySelectorAll("#panelic div");
+        var not = document.querySelectorAll(".lastic");
+
+
+
+        panel.forEach(panel => {
+            panel.addEventListener('click', () => {
+
+                not.forEach(not => {
+                    if (not.id == (panel.id + "1")) {
+                        document.getElementById(panel.id + "1").style.display = "block";
+
+                    }
+                    else {
+                        document.getElementById(not.id).style.display = "none";
+                    }
+                });
+
+
+            });
+        });
+        function myFunction() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = document.getElementById("myBtn1");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+        }
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                    dropdownContent.style.marginLeft = "50px";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
